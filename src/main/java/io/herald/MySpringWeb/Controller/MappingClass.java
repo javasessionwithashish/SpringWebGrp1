@@ -1,12 +1,18 @@
 package io.herald.MySpringWeb.Controller;
 
+import io.herald.MySpringWeb.Repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller  //Handles Http Requests : Get, Post, etc
 public class MappingClass {
+
+    @Autowired
+    private UserRepository uRepo;
 
 @GetMapping("/") //url pattern for mapping
     public String openFirstPage()
@@ -35,7 +41,9 @@ String password = request.getParameter("password");
         System.out.println(username);
         System.out.println(password);
 
-        if(username.equals("admin") && password.equals("admin"))
+   String hashPassword = DigestUtils.md5DigestAsHex(password.getBytes());
+
+        if(uRepo.existsByUsernameAndPassword(username,hashPassword) )
         {
             return "home.html";
         }
