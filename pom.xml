@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.herald</groupId>
-	<artifactId>MySpringWeb</artifactId>
+	<artifactId>MySpringWebGrp1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
